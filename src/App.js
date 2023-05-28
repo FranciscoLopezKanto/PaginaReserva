@@ -71,12 +71,12 @@ function App() {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleServiceChange('Servicio 2')}>
+                <button onClick={() => handleServiceChange('TOUR EN VEHÍCULO «VICUÑA')}>
                 TOUR EN VEHÍCULO «ALREDEDORES DE VICUÑA»
                 </button>
               </li>
               <li>
-                <button onClick={() => handleServiceChange('Servicio 3')}>
+                <button onClick={() => handleServiceChange('ARRIENDO DE BICICLETAS')}>
                 ARRIENDO DE BICICLETAS
                 </button>
               </li>
