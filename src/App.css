@@ -20,4 +20,35 @@
     justify-content: center;
     margin-top: 10px;
   }
+  .ticket {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+  }
   
+  .ticket.available {
+    background-color: green;
+    color: white;
+  }
+  
+  .ticket.unavailable {
+    background-color: red;
+    color: white;
+  }
+  .custom-day-content {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .custom-day-content::after {
+    content: attr(title);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
