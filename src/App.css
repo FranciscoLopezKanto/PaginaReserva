@@ -1,0 +1,23 @@
+.App {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('https://i.postimg.cc/ZRTjSrmW/frutullitas.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .container {
+    background-color: #da5e5e88;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 10 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .date-picker-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
