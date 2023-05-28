@@ -3,9 +3,9 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './App.css';
 
-
 function App() {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedService, setSelectedService] = useState(null);
   const minDate = new Date();
   minDate.setDate(minDate.getDate() + 2);
 
@@ -17,11 +17,11 @@ function App() {
   ];
 
   const isDateReserved = (date) => {
-    // Verifica si la fecha está en el array de fechas reservadas
-    return reservedDates.some(reservedDate =>
-      reservedDate.getDate() === date.getDate() &&
-      reservedDate.getMonth() === date.getMonth() &&
-      reservedDate.getFullYear() === date.getFullYear()
+    return reservedDates.some(
+      (reservedDate) =>
+        reservedDate.getDate() === date.getDate() &&
+        reservedDate.getMonth() === date.getMonth() &&
+        reservedDate.getFullYear() === date.getFullYear()
     );
   };
 
@@ -33,30 +33,70 @@ function App() {
     setSelectedDate(date);
   };
 
+  const handleServiceChange = (service) => {
+    setSelectedService(service);
+  };
+
   const filterDates = (date) => {
     // Filtra las fechas reservadas
     return !isDateReserved(date);
   };
 
+  const renderTicket = () => {
+    if (!selectedDate || !selectedService) {
+      return null;
+    }
+    if (isDateReserved(selectedDate)) {
+      return <div className="ticket unavailable">No disponible</div>;
+    }
+    return (
+      <div className="ticket available">
+        <p>Fecha seleccionada: {selectedDate.toLocaleDateString()}</p>
+        <p>Servicio seleccionado: {selectedService}</p>
+      </div>
+    );
+  };
+
   return (
     <div className="App">
       <div className="container">
-        <h1>Consulta tu Disponibilidad</h1>
+        <h1>CONSULTA DISPONIBILIDAD</h1>
         <div className="date-picker-container">
-          <DatePicker
-            selected={selectedDate}
-            onChange={handleDateChange}
-            dateFormat="dd/MM/yyyy"
-            minDate={minDate}
-            filterDate={filterDates}
-          />
+          <div className="sidebar">
+            <h2>Lista de servicios</h2>
+            <ul>
+              <li>
+                <button onClick={() => handleServiceChange('TOUR ASTRONÓMICO')}>
+                TOUR ASTRONÓMICO
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleServiceChange('Servicio 2')}>
+                TOUR EN VEHÍCULO «ALREDEDORES DE VICUÑA»
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleServiceChange('Servicio 3')}>
+                ARRIENDO DE BICICLETAS
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div className="date-picker-wrapper">
+            <DatePicker
+              selected={selectedDate}
+              onChange={handleDateChange}
+              dateFormat="dd/MM/yyyy"
+              minDate={minDate}
+              filterDate={filterDates}
+            />
+            {renderTicket()}
+          </div>
         </div>
-        {selectedDate && (
-          <p>Selected Date: {selectedDate.toLocaleDateString()}</p>
-        )}
       </div>
     </div>
   );
 }
 
 export default App;
+
