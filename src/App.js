@@ -41,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>Date Picker Example</h1>
+        <h1>Consulta tu Disponibilidad</h1>
         <div className="date-picker-container">
           <DatePicker
             selected={selectedDate}
